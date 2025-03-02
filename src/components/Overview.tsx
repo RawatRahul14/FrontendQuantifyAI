@@ -46,7 +46,7 @@ const Overview = () => {
                 </div>
 
                 <div>
-                    <motion.div variants={variants.fadeInScale} initial="start" whileInView="end" viewport={{ once: true }} className="relative max-w-4xl max-auto shadow-xl">
+                    <motion.div variants={variants.fadeInScale} initial="start" whileInView="end" viewport={{ once: true }} className="relative max-w-4xl mx-auto shadow-xl">
                         <figure>
                             <img src={overviewBanner} width={900} height={601} alt="" />
                         </figure>
