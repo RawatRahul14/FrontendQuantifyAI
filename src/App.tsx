@@ -11,6 +11,7 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Brand from "./components/Brand";
 import Feature from "./components/Feature";
+import Process from "./components/Process";
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
         <Hero />
         <Brand />
         <Feature />
+        <Process />
       </main>
     </div>
     </ReactLenis>
