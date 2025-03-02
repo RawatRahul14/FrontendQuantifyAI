@@ -2,6 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -89,5 +90,11 @@
     
     /* Responsive for xl screen */
     2xl:max-w-screen-xl;
+  }
+
+  .section {
+    @apply py-8
+    
+    md:py-16;
   }
 }
