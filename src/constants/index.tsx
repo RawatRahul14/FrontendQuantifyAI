@@ -133,11 +133,11 @@ export const navMenu: MenuItem[] = [
 
 // Hero
 export const heroData = {
-  sectionSubtitle: 'All in one analytics tool',
-  sectionTitle: 'Presenting the next-gen user',
-  decoTitle: 'analytics',
+  sectionSubtitle: '🚀 Introducing Next-Gen Financial Insights',
+  sectionTitle: 'AI-driven analytics for smarter',
+  decoTitle: 'decisions.',
   sectionText:
-    'Next-gen user analytics: Gain valuable insights into user behavior and drive data-informed decision-making with our revolutionary platform.',
+    'Unlock actionable insights with AI-powered financial analytics. Make smarter decisions with real-time data and predictive intelligence.',
 };
 
 // Feature

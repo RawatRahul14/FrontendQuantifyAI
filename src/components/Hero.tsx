@@ -1,7 +1,8 @@
 /**
  * Node Modules 
  */
-import { motion, Variants } from "motion/react";
+import { motion, Variants, useScroll, useSpring, useTransform } from "motion/react";
+import { useRef } from "react";
 
 /**
  * Components
@@ -55,6 +56,22 @@ const heroChildVariant: Variants = {
 };
 
 const Hero = () => {
+
+    const heroBannerRef = useRef<HTMLElement>(null);
+
+    const { scrollYProgress } = useScroll({
+        target: heroBannerRef,
+        offset: ["start 1080px", "50% start"]
+    });
+
+    const scrollYTransform = useTransform(scrollYProgress, [0, 1], [0.85, 1.15]);
+
+    const scale = useSpring(scrollYTransform, {
+        stiffness: 300,
+        damping: 30,
+        restDelta: 0.001
+    });
+
     return (
         <section className="py-10 md:py-16">
             <motion.div variants={heroVariant} initial="start" animate="end" className="container text-center">
@@ -99,7 +116,7 @@ const Hero = () => {
                 </div>
 
                 <div className="relative mt-12 max-w-screen-xl mx-auto isolate rounded-xl md:mt-16">
-                    <motion.figure className="bg-background/60 border border-slate-800 backdrop-blur-3xl rounded-xl shadow-2xl overflow-hidden" initial={{y: 120, opacity: 0, filter: "blur(5px)"}} animate={{y: 0, opacity: 1, filter: "blur(0)"}} transition={{duration: 1.5, delay: 0.5, ease: "backInOut"}}>
+                    <motion.figure className="bg-background/60 border border-slate-800 backdrop-blur-3xl rounded-xl shadow-2xl overflow-hidden" initial={{y: 120, opacity: 0, filter: "blur(5px)"}} animate={{y: 0, opacity: 1, filter: "blur(0)"}} transition={{duration: 1.5, delay: 0.5, ease: "backInOut"}} ref={heroBannerRef} style={{ scale }}>
                         <img src={heroBanner} width={1468} height={815} alt="" className="DashBoard" />
                     </motion.figure>
 
