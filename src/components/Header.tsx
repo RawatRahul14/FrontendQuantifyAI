@@ -9,11 +9,17 @@ import {
 } from "./ui/popover";
 
 import Logo from "./Logo";
+import MobileMenu from "./MobileMenu";
 
 /**
  * Aseets 
  */
 import { Menu } from "lucide-react";
+
+/**
+ * Constants 
+ */
+import { navMenu } from "../constants";
 
 const Header = () => {
     return (
@@ -27,8 +33,8 @@ const Header = () => {
                         </Button>
                 </PopoverTrigger>
 
-                <PopoverContent>
-                    Menu
+                <PopoverContent align="end" className="bg-background/50 backdrop-blur-3xl border-foreground/5 border-x-0 border-b-0 rounded-lg overflow-hidden">
+                    <MobileMenu navMenu={navMenu} />
                 </PopoverContent>
                 </Popover>
             </div>
