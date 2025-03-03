@@ -16,6 +16,7 @@ import Overview from "./components/Overview";
 import Review from "./components/Review";
 import Blog from "./components/Blog";
 import Cta from "./components/Cta";
+import Footer from "./components/Footer";
 
 const App = () => {
   return (
@@ -33,6 +34,8 @@ const App = () => {
         <Blog />
         <Cta />
       </main>
+
+      <Footer />
     </div>
     </ReactLenis>
   );
