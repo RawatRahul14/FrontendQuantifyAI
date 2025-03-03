@@ -15,6 +15,7 @@ import Process from "./components/Process";
 import Overview from "./components/Overview";
 import Review from "./components/Review";
 import Blog from "./components/Blog";
+import Cta from "./components/Cta";
 
 const App = () => {
   return (
@@ -29,8 +30,9 @@ const App = () => {
         <Process />
         <Overview />
         <Review />
+        <Blog />
+        <Cta />
       </main>
-      <Blog />
     </div>
     </ReactLenis>
   );
