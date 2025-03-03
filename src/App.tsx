@@ -13,6 +13,7 @@ import Brand from "./components/Brand";
 import Feature from "./components/Feature";
 import Process from "./components/Process";
 import Overview from "./components/Overview";
+import Review from "./components/Review";
 
 const App = () => {
   return (
@@ -26,6 +27,7 @@ const App = () => {
         <Feature />
         <Process />
         <Overview />
+        <Review />
       </main>
     </div>
     </ReactLenis>
