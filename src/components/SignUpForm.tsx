@@ -4,6 +4,8 @@ import { motion } from 'framer-motion'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Eye, EyeOff } from 'lucide-react'
+import { auth } from './firebaseConfig'
+import { createUserWithEmailAndPassword } from 'firebase/auth'
 
 export default function SignUpForm() {
   const [email, setEmail] = useState('')
@@ -11,16 +13,42 @@ export default function SignUpForm() {
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [password, setPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const navigate = useNavigate()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     if (password !== confirmPassword) {
-      alert("Passwords don't match!")
+      setError("Passwords don't match!")
       return
     }
-    // Add registration logic here
-    navigate('/home')
+    
+    setError('')
+    setIsSubmitting(true)
+
+    try {
+      await createUserWithEmailAndPassword(auth, email, password)
+      navigate('/home')
+    } catch (error: any) {
+      let errorMessage = 'Sign up failed. Please try again.'
+      switch (error.code) {
+        case 'auth/email-already-in-use':
+          errorMessage = 'Email already in use.'
+          break
+        case 'auth/invalid-email':
+          errorMessage = 'Invalid email address.'
+          break
+        case 'auth/weak-password':
+          errorMessage = 'Password should be at least 6 characters.'
+          break
+        default:
+          errorMessage = error.message
+      }
+      setError(errorMessage)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -53,7 +81,10 @@ export default function SignUpForm() {
                     required
                     placeholder="email@example.com"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                      setError('')
+                    }}
                   />
                 </div>
 
@@ -68,7 +99,10 @@ export default function SignUpForm() {
                       required
                       placeholder="••••••••"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => {
+                        setPassword(e.target.value)
+                        setError('')
+                      }}
                     />
                     <button
                       type="button"
@@ -96,7 +130,10 @@ export default function SignUpForm() {
                       required
                       placeholder="••••••••"
                       value={confirmPassword}
-                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      onChange={(e) => {
+                        setConfirmPassword(e.target.value)
+                        setError('')
+                      }}
                     />
                     <button
                       type="button"
@@ -114,11 +151,18 @@ export default function SignUpForm() {
                 </div>
               </div>
 
+              {error && (
+                <div className="text-red-400 text-sm text-center">
+                  {error}
+                </div>
+              )}
+
               <Button 
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white transition-colors duration-300"
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white transition-colors duration-300 disabled:opacity-50"
                 type="submit"
+                disabled={isSubmitting}
               >
-                Sign Up
+                {isSubmitting ? 'Signing Up...' : 'Sign Up'}
               </Button>
 
               <div className="text-center text-sm">
@@ -134,7 +178,7 @@ export default function SignUpForm() {
           </Card>
         </motion.figure>
 
-        {/* Background effects (same as login) */}
+        {/* Background effects */}
         <motion.div 
           className="absolute bg-blue-900/20 inset-5 blur-[50px] -z-10"
           initial={{ scale: 0.8, opacity: 0 }}
