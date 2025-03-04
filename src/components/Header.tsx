@@ -19,6 +19,8 @@ import {
     NavigationMenuTrigger,
     navigationMenuTriggerStyle
 } from "./ui/navigation-menu";
+import { auth } from "./firebaseConfig";
+import { useNavigate } from "react-router-dom";
 
 /**
  * Assets 
@@ -31,6 +33,17 @@ import { Menu, ChevronDown, User, Settings, LogOut } from "lucide-react";
 import { navMenu } from "../constants";
 
 const Header = () => {
+  const navigate = useNavigate();
+
+  const handleLogout = async () => {
+    try {
+      await auth.signOut();
+      navigate('/'); // Redirect to home page
+    } catch (error) {
+      console.error('Logout error:', error);
+    }
+  };
+
   return (
     <header className="h-16 grid grid-cols-1 items-center md:h-20 lg:h-24">
       <div className="container flex items-center justify-between lg:grid lg:grid-cols-[1fr,3fr,1fr]">
@@ -105,7 +118,11 @@ const Header = () => {
                   <Settings className="w-4 h-4" />
                   Settings
                 </Button>
-                <Button variant="ghost" className="justify-start gap-2 text-destructive hover:text-destructive">
+                <Button 
+                  variant="ghost" 
+                  className="justify-start gap-2 text-destructive hover:text-destructive"
+                  onClick={handleLogout}
+                >
                   <LogOut className="w-4 h-4" />
                   Logout
                 </Button>
