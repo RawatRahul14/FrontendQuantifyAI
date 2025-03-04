@@ -5,15 +5,21 @@ import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Eye, EyeOff } from 'lucide-react'
 
-export default function LoginForm() {
+export default function SignUpForm() {
   const [email, setEmail] = useState('')
   const [showPassword, setShowPassword] = useState(false)
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false)
   const [password, setPassword] = useState('')
+  const [confirmPassword, setConfirmPassword] = useState('')
   const navigate = useNavigate()
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    // Add authentication logic here
+    if (password !== confirmPassword) {
+      alert("Passwords don't match!")
+      return
+    }
+    // Add registration logic here
     navigate('/home')
   }
 
@@ -29,10 +35,10 @@ export default function LoginForm() {
           <Card className="max-w-md w-full space-y-8 p-8 bg-transparent border-none">
             <div className="text-center">
               <h2 className="mt-6 text-3xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
-                Welcome Back
+                Create Account
               </h2>
               <p className="mt-2 text-sm text-gray-400">
-                Sign in to your QuantityAI account
+                Create your QuantityAI account
               </p>
             </div>
             <form className="space-y-6" onSubmit={handleSubmit}>
@@ -78,39 +84,57 @@ export default function LoginForm() {
                     </button>
                   </div>
                 </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-1">
+                    Confirm Password
+                  </label>
+                  <div className="relative">
+                    <input
+                      className="w-full px-4 py-2 rounded-lg bg-gray-700/50 border border-gray-600 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-gray-100 placeholder-gray-400 transition-all pr-10"
+                      type={showConfirmPassword ? "text" : "password"}
+                      required
+                      placeholder="••••••••"
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                    />
+                    <button
+                      type="button"
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-blue-400 transition-colors"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      aria-label={showConfirmPassword ? "Hide password" : "Show password"}
+                    >
+                      {showConfirmPassword ? (
+                        <EyeOff className="h-5 w-5" />
+                      ) : (
+                        <Eye className="h-5 w-5" />
+                      )}
+                    </button>
+                  </div>
+                </div>
               </div>
 
               <Button 
                 className="w-full bg-blue-600 hover:bg-blue-500 text-white transition-colors duration-300"
                 type="submit"
               >
-                Sign in
+                Sign Up
               </Button>
 
-              <div className="text-center text-sm space-y-2">
-                <div>
-                  <Link
-                    to="#"
-                    className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  >
-                    Forgot your password?
-                  </Link>
-                </div>
-                <div>
-                  <span className="text-gray-400">Don't have an account? </span>
-                  <Link
-                    to="/signup"
-                    className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
-                  >
-                    Sign Up
-                  </Link>
-                </div>
+              <div className="text-center text-sm">
+                <span className="text-gray-400">Already have an account? </span>
+                <Link
+                  to="/"
+                  className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                >
+                  Sign In
+                </Link>
               </div>
             </form>
           </Card>
         </motion.figure>
 
-        {/* Background effects */}
+        {/* Background effects (same as login) */}
         <motion.div 
           className="absolute bg-blue-900/20 inset-5 blur-[50px] -z-10"
           initial={{ scale: 0.8, opacity: 0 }}

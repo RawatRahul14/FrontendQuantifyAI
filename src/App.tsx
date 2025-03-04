@@ -18,6 +18,7 @@ import Blog from "./components/Blog";
 import Cta from "./components/Cta";
 import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
+import SignUpForm from './components/SignUpForm';
 
 const HomeLayout = () => (
   <div className="relative isolate overflow-hidden">
@@ -40,8 +41,8 @@ const App = () => {
   return (
     <ReactLenis root>
       <Routes>
-        <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path="/login" element={<LoginForm />} />
+        <Route path="/" element={<LoginForm />} />
+        <Route path="/signup" element={<SignUpForm />} />
         <Route path="/home" element={<HomeLayout />} />
       </Routes>
     </ReactLenis>
