@@ -4,17 +4,47 @@ import { motion } from 'framer-motion'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Eye, EyeOff } from 'lucide-react'
+import { auth } from './firebaseConfig' // Adjust path as needed
+import { signInWithEmailAndPassword } from 'firebase/auth'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
   const [showPassword, setShowPassword] = useState(false)
   const [password, setPassword] = useState('')
+  const [error, setError] = useState('')
+  const [isSubmitting, setIsSubmitting] = useState(false)
   const navigate = useNavigate()
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Add authentication logic here
-    navigate('/home')
+    setError('')
+    setIsSubmitting(true)
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password)
+      navigate('/home')
+    } catch (error: any) {
+      let errorMessage = 'Login failed. Please try again.'
+      switch (error.code) {
+        case 'auth/invalid-credential':
+          errorMessage = 'Invalid email or password'
+          break
+        case 'auth/user-not-found':
+          errorMessage = 'No account found with this email'
+          break
+        case 'auth/wrong-password':
+          errorMessage = 'Incorrect password'
+          break
+        case 'auth/too-many-requests':
+          errorMessage = 'Too many attempts. Try again later'
+          break
+        default:
+          errorMessage = error.message
+      }
+      setError(errorMessage)
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -47,7 +77,10 @@ export default function LoginForm() {
                     required
                     placeholder="email@example.com"
                     value={email}
-                    onChange={(e) => setEmail(e.target.value)}
+                    onChange={(e) => {
+                      setEmail(e.target.value)
+                      setError('')
+                    }}
                   />
                 </div>
 
@@ -62,7 +95,10 @@ export default function LoginForm() {
                       required
                       placeholder="••••••••"
                       value={password}
-                      onChange={(e) => setPassword(e.target.value)}
+                      onChange={(e) => {
+                        setPassword(e.target.value)
+                        setError('')
+                      }}
                     />
                     <button
                       type="button"
@@ -80,11 +116,18 @@ export default function LoginForm() {
                 </div>
               </div>
 
+              {error && (
+                <div className="text-red-400 text-sm text-center">
+                  {error}
+                </div>
+              )}
+
               <Button 
-                className="w-full bg-blue-600 hover:bg-blue-500 text-white transition-colors duration-300"
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white transition-colors duration-300 disabled:opacity-50"
                 type="submit"
+                disabled={isSubmitting}
               >
-                Sign in
+                {isSubmitting ? 'Signing In...' : 'Sign in'}
               </Button>
 
               <div className="text-center text-sm space-y-2">
