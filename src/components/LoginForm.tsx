@@ -4,8 +4,9 @@ import { motion } from 'framer-motion'
 import { Button } from './ui/button'
 import { Card } from './ui/card'
 import { Eye, EyeOff } from 'lucide-react'
-import { auth } from './firebaseConfig' // Adjust path as needed
-import { signInWithEmailAndPassword } from 'firebase/auth'
+import { auth } from './firebaseConfig'
+import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from './ui/dialog' // Add dialog component
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')
@@ -13,6 +14,9 @@ export default function LoginForm() {
   const [password, setPassword] = useState('')
   const [error, setError] = useState('')
   const [isSubmitting, setIsSubmitting] = useState(false)
+  const [showResetDialog, setShowResetDialog] = useState(false)
+  const [resetEmail, setResetEmail] = useState('')
+  const [resetStatus, setResetStatus] = useState<{ message: string; type: 'success' | 'error' } | null>(null)
   const navigate = useNavigate()
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -24,26 +28,63 @@ export default function LoginForm() {
       await signInWithEmailAndPassword(auth, email, password)
       navigate('/home')
     } catch (error: any) {
-      let errorMessage = 'Login failed. Please try again.'
-      switch (error.code) {
-        case 'auth/invalid-credential':
-          errorMessage = 'Invalid email or password'
-          break
-        case 'auth/user-not-found':
-          errorMessage = 'No account found with this email'
-          break
-        case 'auth/wrong-password':
-          errorMessage = 'Incorrect password'
-          break
-        case 'auth/too-many-requests':
-          errorMessage = 'Too many attempts. Try again later'
-          break
-        default:
-          errorMessage = error.message
-      }
-      setError(errorMessage)
+      handleLoginError(error)
     } finally {
       setIsSubmitting(false)
+    }
+  }
+
+  const handleLoginError = (error: any) => {
+    let errorMessage = 'Login failed. Please try again.'
+    switch (error.code) {
+      case 'auth/invalid-credential':
+        errorMessage = 'Invalid email or password'
+        break
+      case 'auth/user-not-found':
+        errorMessage = 'No account found with this email'
+        break
+      case 'auth/wrong-password':
+        errorMessage = 'Incorrect password'
+        break
+      case 'auth/too-many-requests':
+        errorMessage = 'Too many attempts. Try again later'
+        break
+      default:
+        errorMessage = error.message
+    }
+    setError(errorMessage)
+  }
+
+  const handlePasswordReset = async () => {
+    setResetStatus(null)
+    if (!resetEmail) {
+      setResetStatus({ message: 'Please enter your email address', type: 'error' })
+      return
+    }
+
+    try {
+      await sendPasswordResetEmail(auth, resetEmail)
+      setResetStatus({
+        message: 'Password reset email sent! Check your inbox.',
+        type: 'success'
+      })
+      setTimeout(() => setShowResetDialog(false), 2000)
+    } catch (error: any) {
+      setResetStatus({
+        message: getResetErrorMessage(error),
+        type: 'error'
+      })
+    }
+  }
+
+  const getResetErrorMessage = (error: any) => {
+    switch (error.code) {
+      case 'auth/user-not-found':
+        return 'No account found with this email'
+      case 'auth/invalid-email':
+        return 'Invalid email address'
+      default:
+        return 'Failed to send reset email. Please try again.'
     }
   }
 
@@ -132,12 +173,16 @@ export default function LoginForm() {
 
               <div className="text-center text-sm space-y-2">
                 <div>
-                  <Link
-                    to="#"
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setResetEmail(email)
+                      setShowResetDialog(true)
+                    }}
                     className="text-blue-400 hover:text-blue-300 transition-colors font-medium"
                   >
                     Forgot your password?
-                  </Link>
+                  </button>
                 </div>
                 <div>
                   <span className="text-gray-400">Don't have an account? </span>
@@ -152,6 +197,45 @@ export default function LoginForm() {
             </form>
           </Card>
         </motion.figure>
+
+        {/* Password Reset Dialog */}
+        <Dialog open={showResetDialog} onOpenChange={setShowResetDialog}>
+          <DialogContent className="bg-gray-800/90 backdrop-blur-3xl border border-gray-700 rounded-xl">
+            <DialogHeader>
+              <DialogTitle className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-indigo-400 bg-clip-text text-transparent">
+                Reset Password
+              </DialogTitle>
+              <DialogDescription className="text-gray-400 mt-2">
+                Enter your email to receive a password reset link
+              </DialogDescription>
+            </DialogHeader>
+
+            <div className="space-y-4">
+              <input
+                className="w-full px-4 py-2 rounded-lg bg-gray-700/50 border border-gray-600 focus:ring-2 focus:ring-blue-400 focus:border-blue-400 text-gray-100 placeholder-gray-400 transition-all"
+                type="email"
+                placeholder="email@example.com"
+                value={resetEmail}
+                onChange={(e) => setResetEmail(e.target.value)}
+              />
+              
+              {resetStatus && (
+                <div className={`text-sm text-center ${
+                  resetStatus.type === 'success' ? 'text-green-400' : 'text-red-400'
+                }`}>
+                  {resetStatus.message}
+                </div>
+              )}
+
+              <Button
+                className="w-full bg-blue-600 hover:bg-blue-500 text-white transition-colors duration-300"
+                onClick={handlePasswordReset}
+              >
+                Send Reset Link
+              </Button>
+            </div>
+          </DialogContent>
+        </Dialog>
 
         {/* Background effects */}
         <motion.div 
