@@ -2,11 +2,11 @@
  * Node Modules 
  */
 import { ReactLenis } from "lenis/react";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 /**
  * Components
  */
-
 import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Brand from "./components/Brand";
@@ -17,26 +17,33 @@ import Review from "./components/Review";
 import Blog from "./components/Blog";
 import Cta from "./components/Cta";
 import Footer from "./components/Footer";
+import LoginForm from "./components/LoginForm";
+
+const HomeLayout = () => (
+  <div className="relative isolate overflow-hidden">
+    <Header />
+    <main>
+      <Hero />
+      <Brand />
+      <Feature />
+      <Process />
+      <Overview />
+      <Review />
+      <Blog />
+      <Cta />
+    </main>
+    <Footer />
+  </div>
+);
 
 const App = () => {
   return (
     <ReactLenis root>
-    <div className="relative isolate overflow-hidden">
-      <Header />
-
-      <main>
-        <Hero />
-        <Brand />
-        <Feature />
-        <Process />
-        <Overview />
-        <Review />
-        <Blog />
-        <Cta />
-      </main>
-
-      <Footer />
-    </div>
+      <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/login" element={<LoginForm />} />
+        <Route path="/home" element={<HomeLayout />} />
+      </Routes>
     </ReactLenis>
   );
 };
