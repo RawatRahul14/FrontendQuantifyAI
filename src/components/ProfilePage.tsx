@@ -19,6 +19,10 @@ export default function ProfilePage() {
     }
   }
 
+  const handleGoToMain = () => {
+    navigate('/home')
+  }
+
   return (
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-900 to-gray-800 via-30% animate-gradient-flow">
       <motion.div 
@@ -38,7 +42,7 @@ export default function ProfilePage() {
 
             <div className="text-center space-y-2">
               <h2 className="text-2xl font-bold text-gray-100">
-                {user?.displayName || 'Anonymous User'}
+                {user?.displayName || 'User Profile'}
               </h2>
               <p className="text-gray-400">{user?.email}</p>
             </div>
@@ -64,12 +68,20 @@ export default function ProfilePage() {
                 </div>
               </div>
 
-              <Button
-                className="w-full bg-blue-600 hover:bg-blue-500"
-                onClick={handleLogout}
-              >
-                Logout
-              </Button>
+              <div className="flex gap-3">
+                <Button
+                  className="flex-1 bg-gray-600 hover:bg-gray-500"
+                  onClick={handleGoToMain}
+                >
+                  Back to Main
+                </Button>
+                <Button
+                  className="flex-1 bg-blue-600 hover:bg-blue-500"
+                  onClick={handleLogout}
+                >
+                  Logout
+                </Button>
+              </div>
             </div>
           </div>
         </Card>

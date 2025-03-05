@@ -50,45 +50,45 @@ import {
 // Header
 export const navMenu: MenuItem[] = [
   {
-    href: '/products',
-    label: 'Products',
+    href: '/services',
+    label: 'Services',
     submenu: [
       {
         href: '#',
         icon: <ChartArea />,
-        label: 'User Analytics',
-        desc: 'Powerful options to securely authenticate and manage',
+        label: 'QuantX Insights',
+        desc: 'Real-time market trends and quant analysis using news & financial data.',
       },
       {
         href: '#',
-        icon: <Building2 />,
-        label: 'B2B SaaS Suite',
-        desc: 'Add-on features built specifically for B2B applications',
-      },
-      {
-        href: '#',
-        icon: <Component />,
-        label: 'React Components',
-        desc: 'Embeddable prebuilt UI components for quick and seamless integrations',
-      },
-      {
-        href: '#',
-        icon: <Code />,
-        label: 'Next.js Analytics',
-        desc: 'The fastest and most seamless authentication solution for Next.js',
-      },
-      {
-        href: '#',
-        icon: <BetweenHorizonalEnd />,
-        label: 'AnalytiX Elements',
-        desc: 'Unstyled UI primitives for endless customization. Powered by AnalytiX',
+        icon: <Files />,
+        label: 'FinReport AI',
+        desc: 'AI-powered insights from financial reports for data-driven decisions.',
       },
       {
         href: '#',
         icon: <BrainCircuit />,
-        label: 'Authentication for AI',
-        desc: 'Authentication and abuse protection tailored to AI applications',
+        label: 'WealthGPT',
+        desc: 'Conversational AI for personalized financial planning and advisory.',
       },
+      {
+        href: '#',
+        icon: <ChartPie />,
+        label: 'PortfolioPro AI',
+        desc: 'Smart portfolio management with AI-driven optimization and insights.',
+      },
+      // {
+      //   href: '#',
+      //   icon: <Code />,
+      //   label: 'Next.js Analytics',
+      //   desc: 'The fastest and most seamless authentication solution for Next.js',
+      // },
+      // {
+      //   href: '#',
+      //   icon: <BetweenHorizonalEnd />,
+      //   label: 'AnalytiX Elements',
+      //   desc: 'Unstyled UI primitives for endless customization. Powered by AnalytiX',
+      // },
     ],
   },
   {
