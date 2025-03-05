@@ -2,7 +2,7 @@
  * Node Modules 
  */
 import { ReactLenis } from "lenis/react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 
 /**
  * Components
@@ -20,6 +20,7 @@ import Footer from "./components/Footer";
 import LoginForm from "./components/LoginForm";
 import SignUpForm from './components/SignUpForm';
 import ProfilePage from "./components/ProfilePage";
+import ProtectedRoute from "./components/ProtectedRoute"; // Add this import
 
 const HomeLayout = () => (
   <div className="relative isolate overflow-hidden">
@@ -40,15 +41,23 @@ const HomeLayout = () => (
 
 const App = () => {
   return (
-    <ReactLenis root>
+  <ReactLenis root>
       <Routes>
-        <Route path="/" element={<LoginForm />} />
+        <Route path="/login" element={<LoginForm />} />
         <Route path="/signup" element={<SignUpForm />} />
-        <Route path="/home" element={<HomeLayout />} />
-        <Route path="/profile" element={<ProfilePage />} />
+        
+        {/* Protected routes group */}
+        <Route element={<ProtectedRoute />}>
+          <Route path="/" element={<HomeLayout />} />
+          <Route path="/home" element={<HomeLayout />} />
+          <Route path="/profile" element={<ProfilePage />} />
+        </Route>
+
+        <Route path="*" element={<Navigate to="/login" replace />} />
       </Routes>
-    </ReactLenis>
+  </ReactLenis>
   );
 };
+
 
 export default App;

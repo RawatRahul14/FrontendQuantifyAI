@@ -38,7 +38,9 @@ const Header = () => {
   const handleLogout = async () => {
     try {
       await auth.signOut();
-      navigate('/'); // Redirect to home page
+      // Clear any cached data and replace history entry
+      navigate('/', { replace: true });
+      window.location.reload(); // Force clear client-side cache
     } catch (error) {
       console.error('Logout error:', error);
     }
