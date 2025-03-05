@@ -20,7 +20,7 @@ import {
     navigationMenuTriggerStyle
 } from "./ui/navigation-menu";
 import { auth } from "./firebaseConfig";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 /**
  * Assets 
@@ -110,9 +110,11 @@ const Header = () => {
             </PopoverTrigger>
             <PopoverContent align="end" className="w-48 p-2 rounded-xl">
               <div className="flex flex-col gap-1">
-                <Button variant="ghost" className="justify-start gap-2">
-                  <User className="w-4 h-4" />
-                  Profile
+              <Button variant="ghost" className="justify-start gap-2" asChild>
+                  <Link to="/profile">
+                    <User className="w-4 h-4" />
+                    My Profile
+                  </Link>
                 </Button>
                 <Button variant="ghost" className="justify-start gap-2">
                   <Settings className="w-4 h-4" />
