@@ -92,8 +92,8 @@ export const navMenu: MenuItem[] = [
     ],
   },
   {
-    href: '/features',
-    label: 'Features',
+    href: '/dashboard',
+    label: 'Dashboard',
   },
   {
     href: '/docs',
