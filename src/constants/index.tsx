@@ -396,26 +396,26 @@ export const footerData = {
       ],
     },
   ],
-  copyright: '© 2024 codewithsadee',
+  copyright: '© 2025 Rahul Rawat',
   socialLinks: [
     {
-      href: 'https://x.com/codewithsadee_',
+      href: '#',
       icon: <Twitter size={18} />,
     },
     {
-      href: 'https://github.com/codewithsadee',
+      href: 'https://github.com/rawatrahul14',
       icon: <Github size={18} />,
     },
     {
-      href: 'https://www.linkedin.com/in/codewithsadee/',
+      href: 'https://www.linkedin.com/in/rahul148/',
       icon: <Linkedin size={18} />,
     },
     {
-      href: 'https://www.instagram.com/codewithsadee',
+      href: 'https://www.instagram.com/rahul_.14',
       icon: <Instagram size={18} />,
     },
     {
-      href: 'https://www.youtube.com/codewithsadee',
+      href: '#',
       icon: <Youtube size={18} />,
     },
   ],
