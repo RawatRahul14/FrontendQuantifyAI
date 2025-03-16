@@ -7,7 +7,7 @@ import { useState, useCallback, useRef, MouseEvent } from "react";
 /**
  * Framer motion variants
  */
-import * as variants from "../lib/motionVariants"
+import * as variants from "../../lib/motionVariants"
 
 type FeatureCardProps = {
     classes?: string,

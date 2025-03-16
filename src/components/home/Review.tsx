@@ -6,17 +6,17 @@ import { motion } from "motion/react";
 /**
  * Framer Motion
  */
-import * as variants from "../lib/motionVariants"
+import * as variants from "../../lib/motionVariants"
 
 /**
  * Constants 
  */
-import { reviewData } from "../constants";
+import { reviewData } from "../../constants";
 
 /**
  * Components
  */
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../components/ui/card";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../components/ui/card";
 
 /**
  * Assets

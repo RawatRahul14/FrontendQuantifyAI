@@ -6,12 +6,12 @@ import { motion } from "motion/react";
 /**
  * Assets 
  */
-import { brands } from "../assets";
+import { brands } from "../../assets";
 
 /**
  * Framer motion variants 
  */
-import * as variants from "../lib/motionVariants";
+import * as variants from "../../lib/motionVariants";
 
 const Brand = () => {
     return (

@@ -1,12 +1,12 @@
 /**
  * Components
  */
-import { Button } from "../components/ui/button";
+import { Button } from "../../components/ui/button";
 import {
     Collapsible,
     CollapsibleContent,
     CollapsibleTrigger,
-  } from "../components/ui/collapsible";
+  } from "../../components/ui/collapsible";
 /**
  * Assets 
  */
@@ -16,7 +16,7 @@ import { ChevronsUpDown } from "lucide-react";
  * Types 
  */
 
-import { MenuItem } from "../types";
+import { MenuItem } from "../../types";
 
 type MobileMenuProps = {
     navMenu: MenuItem[]

@@ -1,7 +1,7 @@
 /**
  *Assets 
  */
-import { favicon, logo } from "../assets";
+import { favicon, logo } from "../../assets";
 
 type LogoProps = {
     variant?: "default" | "icon";

@@ -6,26 +6,26 @@ import { motion } from "motion/react";
 /**
  * Framer motion variants
  */
-import * as variants from "../lib/motionVariants";
+import * as variants from "../../lib/motionVariants";
 
 /**
  * Constants
  */
-import { overviewData } from "../constants";
+import { overviewData } from "../../constants";
 import ReactPlayer from "react-player/youtube";
 
 /**
  * Assets
  */
-import { overviewBanner } from "../assets";
+import { overviewBanner } from "../../assets";
 import { Play } from "lucide-react";
 
 /**
  * Components
  */
-import { Button } from "./ui/button";
-import { Dialog, DialogTrigger, DialogContent } from "./ui/dialog";
-import { AspectRatio } from "./ui/aspect-ratio";
+import { Button } from "../ui/button";
+import { Dialog, DialogTrigger, DialogContent } from "../ui/dialog";
+import { AspectRatio } from "../ui/aspect-ratio";
 
 const Overview = () => {
     return (

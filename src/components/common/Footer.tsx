@@ -1,12 +1,12 @@
 /**
  * Components 
  */
-import Logo from "./Logo";
+import Logo from "../common/Logo";
 
 /**
  * Constants 
  */
-import { footerData } from "../constants";
+import { footerData } from "../../constants";
 
 const Footer = () => {
     return (

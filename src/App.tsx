@@ -7,20 +7,20 @@ import { Routes, Route, Navigate } from "react-router-dom";
 /**
  * Components
  */
-import Header from "./components/Header";
-import Hero from "./components/Hero";
-import Brand from "./components/Brand";
-import Feature from "./components/Feature";
-import Process from "./components/Process";
-import Overview from "./components/Overview";
-import Review from "./components/Review";
-import Blog from "./components/Blog";
-import Cta from "./components/Cta";
-import Footer from "./components/Footer";
-import LoginForm from "./components/LoginForm";
-import SignUpForm from './components/SignUpForm';
-import ProfilePage from "./components/ProfilePage";
-import ProtectedRoute from "./components/ProtectedRoute"; // Add this import
+import Header from "./components/common/Header";
+import Hero from "./components/home/Hero";
+import Brand from "./components/home/Brand";
+import Feature from "./components/home/Feature";
+import Process from "./components/home/Process";
+import Overview from "./components/home/Overview";
+import Review from "./components/home/Review";
+import Blog from "./components/home/Blog";
+import Cta from "./components/home/Cta";
+import Footer from "./components/common/Footer";
+import LoginForm from "./components/auth/LoginForm";
+import SignUpForm from './components/auth/SignUpForm';
+import ProfilePage from "./components/common/ProfilePage";
+import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 const HomeLayout = () => (
   <div className="relative isolate overflow-hidden">

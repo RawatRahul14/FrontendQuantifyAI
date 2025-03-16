@@ -6,19 +6,19 @@ import { motion } from "motion/react";
 /**
  * Framer Motion
  */
-import * as variants from "../lib/motionVariants"
+import * as variants from "../../lib/motionVariants"
 
 /**
  * Constants 
  */
-import { blogData } from "../constants";
+import { blogData } from "../../constants";
 
 /**
  * Components
  */
-import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../components/ui/card";
-import { Badge } from "../components/ui/badge";
-import { Avatar, AvatarImage, AvatarFallback } from "../components/ui/avatar";
+import { Card, CardHeader, CardTitle, CardContent, CardFooter } from "../../components/ui/card";
+import { Badge } from "../../components/ui/badge";
+import { Avatar, AvatarImage, AvatarFallback } from "../../components/ui/avatar";
 
 const Blog = () => {
     return (

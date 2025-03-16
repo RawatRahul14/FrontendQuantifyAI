@@ -7,7 +7,7 @@ import { motion } from "motion/react";
  * Components 
  */
 import FeatureCard from "./FeatureCard";
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 /**
  * Assets
@@ -17,12 +17,12 @@ import { ArrowRight } from "lucide-react";
 /**
  * Constants 
  */
-import { featureData } from "../constants";
+import { featureData } from "../../constants";
 
 /**
  * Framer Motion
  */
-import * as variants from "../lib/motionVariants"
+import * as variants from "../../lib/motionVariants"
 
 const Feature = () => {
     return (

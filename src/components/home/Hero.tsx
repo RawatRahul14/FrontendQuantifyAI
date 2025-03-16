@@ -7,22 +7,22 @@ import { useRef } from "react";
 /**
  * Components
  */
-import { Button } from "./ui/button";
-import { Dialog, DialogTrigger, DialogContent } from "./ui/dialog";
-import { AspectRatio } from "./ui/aspect-ratio";
+import { Button } from "../ui/button";
+import { Dialog, DialogTrigger, DialogContent } from "../ui/dialog";
+import { AspectRatio } from "../ui/aspect-ratio";
 import reactPlayer from "react-player/youtube";
 
 /**
  * Assets 
  */
-import { heroBanner } from "../assets";
+import { heroBanner } from "../../assets";
 import { CirclePlay } from "lucide-react";
 
 /**
  * Constants 
  */
 
-import { heroData } from "../constants";
+import { heroData } from "../../constants";
 import ReactPlayer from "react-player/youtube";
 
 /**

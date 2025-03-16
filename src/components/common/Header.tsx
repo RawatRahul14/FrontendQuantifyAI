@@ -1,14 +1,14 @@
 /**
  * Components 
  */
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 import { 
     Popover, 
     PopoverContent, 
     PopoverTrigger 
-} from "./ui/popover";
-import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
-import Logo from "./Logo";
+} from "../ui/popover";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import Logo from "../common/Logo";
 import MobileMenu from "./MobileMenu";
 import {
     NavigationMenu,
@@ -18,8 +18,8 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
     navigationMenuTriggerStyle
-} from "./ui/navigation-menu";
-import { auth } from "./firebaseConfig";
+} from "../ui/navigation-menu";
+import { auth } from "../auth/firebaseConfig";
 import { useNavigate, Link } from "react-router-dom";
 
 /**
@@ -30,7 +30,7 @@ import { Menu, ChevronDown, User, Settings, LogOut } from "lucide-react";
 /**
  * Constants 
  */
-import { navMenu } from "../constants";
+import { navMenu } from "../../constants";
 
 const Header = () => {
   const navigate = useNavigate();

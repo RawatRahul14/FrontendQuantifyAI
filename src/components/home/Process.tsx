@@ -6,13 +6,13 @@ import { motion } from "motion/react";
 /**
  * Framer Motion
  */
-import * as variants from "../lib/motionVariants"
+import * as variants from "../../lib/motionVariants"
 
 /**
  * Constants
  */
-import { processData } from "../constants";
-import { processBanner } from "../assets";
+import { processData } from "../../constants";
+import { processBanner } from "../../assets";
 
 const Process = () => {
     return (

@@ -6,22 +6,22 @@ import { motion } from "motion/react";
 /**
  * Framer Motion
  */
-import * as variants from "../lib/motionVariants"
+import * as variants from "../../lib/motionVariants"
 
 /**
  * Constants 
  */
-import { ctaData } from "../constants";
+import { ctaData } from "../../constants";
 
 /**
  * Components 
  */
-import { Button } from "./ui/button";
+import { Button } from "../ui/button";
 
 /**
  * Assets
  */
-import { ctaBanner } from "../assets";
+import { ctaBanner } from "../../assets";
 
 const Cta = () => {
     return (

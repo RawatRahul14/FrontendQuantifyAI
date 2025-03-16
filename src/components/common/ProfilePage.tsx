@@ -1,8 +1,8 @@
 import { useAuthState } from 'react-firebase-hooks/auth'
-import { auth } from './firebaseConfig'
-import { Button } from './ui/button'
-import { Card } from './ui/card'
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar'
+import { auth } from '../auth/firebaseConfig'
+import { Button } from '../ui/button'
+import { Card } from '../ui/card'
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import { motion } from 'framer-motion'
 import { useNavigate } from 'react-router-dom'
 
