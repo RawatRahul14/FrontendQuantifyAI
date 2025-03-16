@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -58,81 +57,71 @@
     --chart-4: 280 65% 60%;
     --chart-5: 160 60% 45%;
   }
-}
 
-@layer base {
   * {
     @apply border-border;
   }
 
   body {
-    @apply bg-background 
-    text-foreground;
+    @apply bg-background text-foreground;
   }
 
   ::-webkit-scrollbar {
-    @apply w-2
-    h-2;
+    @apply w-2 h-2 rounded-full;
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-foreground/20
-    rounded-full
-    
-    hover:bg-foreground/30;
+    @apply bg-foreground/20 rounded-full hover:bg-foreground/30;
+  }
+
+  *:hover::-webkit-scrollbar-thumb {
+    @apply bg-light-onBackground/15 dark:bg-dark-onBackground/15;
+  }
+
+  a, img, button {
+    @apply block;
+  }
+
+  input {
+    @apply block outline-none bg-transparent w-full;
+  }
+
+  input[type='password'] {
+    @apply tracking-[5px];
+  }
+
+  input[type='password']::placeholder {
+    @apply tracking-normal;
   }
 }
 
 @layer utilities {
   .container {
-    @apply px-4
-    mx-auto
-    
-    /* Responsive for xl screen */
-    2xl:max-w-screen-xl;
+    @apply px-4 mx-auto 2xl:max-w-screen-xl;
   }
 
   .section {
-    @apply py-8
-    
-    md:py-16;
+    @apply py-8 md:py-16;
   }
 
   .section-head {
-    @apply pb-8
-    text-center
-
-    md:pb-16
-
-    lg:max-w-screen-sm
-    lg:mx-auto;
+    @apply pb-8 text-center md:pb-16 lg:max-w-screen-sm lg:mx-auto;
   }
 
   .section-subtitle {
-    @apply text-primary
-    text-sm
-    font-medium
-    uppercase;
+    @apply text-primary text-sm font-medium uppercase;
   }
 
   .section-title {
-    @apply text-foreground
-    text-3xl
-    font-semibold
-    leading-snug
-    py-3
-    md:text-[40px]
+    @apply text-foreground text-3xl font-semibold leading-snug py-3 md:text-[40px];
   }
 
   .section-text {
-    @apply text-muted-foreground
-    md:text-xl;
+    @apply text-muted-foreground md:text-xl;
   }
 
   .img-cover {
-    @apply w-full
-    h-full
-    object-cover
+    @apply w-full h-full object-cover;
   }
 }
 

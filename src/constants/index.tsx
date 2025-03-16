@@ -54,7 +54,7 @@ export const navMenu: MenuItem[] = [
     label: 'Services',
     submenu: [
       {
-        href: '#',
+        href: '/chatbot',
         icon: <ChartArea />,
         label: 'QuantX Insights',
         desc: 'Real-time market trends and quant analysis using news & financial data.',

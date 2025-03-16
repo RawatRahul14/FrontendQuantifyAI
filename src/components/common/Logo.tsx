@@ -9,7 +9,7 @@ type LogoProps = {
 
 const Logo = ({ variant = "default" }: LogoProps) => {
     return (
-        <a href="" className="">
+        <a href="/home" className="">
             {variant === "default" && (
                 <img 
                     src={logo} 
