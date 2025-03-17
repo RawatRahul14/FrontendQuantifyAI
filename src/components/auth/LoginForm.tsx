@@ -6,7 +6,7 @@ import { Card } from '../ui/card'
 import { Eye, EyeOff } from 'lucide-react'
 import { auth } from './firebaseConfig'
 import { signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth'
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog' // Add dialog component
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from '../ui/dialog'
 
 export default function LoginForm() {
   const [email, setEmail] = useState('')

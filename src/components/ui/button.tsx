@@ -4,6 +4,8 @@ import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "../../lib/utils"
 
+import { Link } from "react-router-dom"
+
 const buttonVariants = cva(
   "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0",
   {
@@ -54,4 +56,45 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 )
 Button.displayName = "Button"
 
-export { Button, buttonVariants }
+interface ExtendedFabProps {
+  href: string;
+  text: string;
+  classes?: string;
+  [key: string]: any; // Allows other props to be passed to the Link component
+}
+
+const ExtendedFab: React.FC<ExtendedFabProps> = ({ href, text, classes = "", ...rest }) => {
+  return (
+    <Link to={href} className={`extended-fab ${classes}`} {...rest}>
+      <span className="material-symbols-rounded">add</span>
+
+      <span className="truncate">{text}</span>
+
+      <div className="state-layer"></div>
+    </Link>
+  );
+}
+
+interface IconBtnProps {
+  classes?: string;
+  icon?: string; // Icon name (e.g., "add", "home")
+  size?: string; // Optional size for the icon (e.g., "small", "large")
+  children?: React.ReactNode; // To allow other elements like text or components as children
+  [key: string]: any; // Allows other props to be passed to the button
+}
+
+const IconBtn: React.FC<IconBtnProps> = ({ classes = "", icon, size = "", children, ...rest }) => {
+  return (
+    <button className={`icon-btn ${size} ${classes}`} {...rest}>
+      {children}
+
+      {!children && (
+        <span className={`material-symbols-rounded icon-${size}`}>
+          {icon}
+        </span>
+      )}
+    </button>
+  );
+};
+
+export { Button, buttonVariants, ExtendedFab, IconBtn }
