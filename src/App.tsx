@@ -19,7 +19,7 @@ import Review from "./components/home/Review";
 import Blog from "./components/home/Blog";
 import Cta from "./components/home/Cta";
 
-import Chatbot from "./components/bot/Chatbot"
+// import Chatbot from "./components/bot/Chatbot"
 
 import Footer from "./components/common/Footer";
 
@@ -57,15 +57,15 @@ const HomeLayout = () => (
  * Chatbot Page
  */
 
-const ChatBot = () => (
-  <div className="relative isolate overflow-hidden">
-    <Header />
-    <main>
-      <Chatbot />
-    </main>
-    <Footer />
-  </div>
-);
+// const ChatBot = () => (
+//   <div className="relative isolate overflow-hidden">
+//     {/* <Header /> */}
+//     <main>
+//       <Chatbot />
+//     </main>
+//     <Footer />
+//   </div>
+// );
 
 
 const App = () => {
@@ -81,7 +81,7 @@ const App = () => {
           <Route path="/home" element={<HomeLayout />} />
           <Route path="/profile" element={<ProfilePage />} />
 
-          <Route path="/chatbot" element={<ChatBot />} />
+          {/* <Route path="/chatbot" element={<ChatBot />} /> */}
         </Route>
 
         <Route path="*" element={<Navigate to="/login" replace />} />
